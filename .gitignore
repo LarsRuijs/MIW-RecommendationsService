@@ -1,0 +1,8 @@
+﻿**/shelf/
+**/workspace.xml
+**/modules.xml
+**/projectSettingsUpdater.xml
+**/.idea/
+**/obj/
+**/bin/
+**/.vs/

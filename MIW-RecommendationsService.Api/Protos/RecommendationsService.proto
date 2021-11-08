@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "MIW_RecommendationsService.Api";
+
+service RecommendationsService {
+  rpc GetAllProducts (GetAllProductsRequest) returns (stream ProductResponse);
+}
+
+message GetAllProductsRequest {
+  
+}
+
+message ProductResponse {
+  int64 id = 1;
+  string name = 2;
+  string company = 3;
+  int32 price = 4;
+  int32 discount = 5;
+  string imgLink = 6;
+}

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>MIW_RecommendationsService.Core</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MIW-RecommendationsService.Dal\MIW-RecommendationsService.Dal.csproj" />
+      <ProjectReference Include="..\MIW-RecommendationsService.Messaging\MIW-RecommendationsService.Messaging.csproj" />
+    </ItemGroup>
+
+</Project>

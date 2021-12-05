@@ -7,7 +7,6 @@ using MIW_RecommendationsService.Core.Services;
 using MIW_RecommendationsService.Core.Services.Interfaces;
 using MIW_RecommendationsService.Dal.Models;
 using MIW_RecommendationsServiceService.Api.Mappers;
-using Neo4j.Driver;
 
 namespace MIW_RecommendationsService.Api.Controllers
 {

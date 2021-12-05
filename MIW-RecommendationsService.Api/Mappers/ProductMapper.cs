@@ -1,8 +1,6 @@
 using System;
 using MIW_RecommendationsService.Api;
 using MIW_RecommendationsService.Dal.Models;
-using MIW_RecommendationsService.Api;
-using MIW_RecommendationsService.Dal.Models;
 
 namespace MIW_RecommendationsServiceService.Api.Mappers
 {

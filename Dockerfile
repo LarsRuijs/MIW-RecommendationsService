@@ -11,5 +11,5 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
 COPY --from=build-env /app/output .
 
-EXPOSE 5012
+EXPOSE 80
 ENTRYPOINT ["dotnet", "MIW-RecommendationsService.Api.dll"]

@@ -7,7 +7,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MIW-RecommendationsService.Dal\MIW-RecommendationsService.Dal.csproj" />
-      <ProjectReference Include="..\MIW-RecommendationsService.Messaging\MIW-RecommendationsService.Messaging.csproj" />
     </ItemGroup>
 
 </Project>

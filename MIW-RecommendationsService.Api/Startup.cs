@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MIW_RecommendationsService.Api.Controllers;
-using MIW_RecommendationsService.Core.Services;
 using MIW_RecommendationsService.Core.Services.Interfaces;
 using MIW_RecommendationsService.Dal.Neo4j;
 using MIW_RecommendationsService.Dal.Neo4j.Interfaces;

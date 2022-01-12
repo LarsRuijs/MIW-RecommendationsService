@@ -3,13 +3,18 @@ syntax = "proto3";
 option csharp_namespace = "MIW_RecommendationsService.Api";
 
 service RecommendationsService {
-  rpc GetRecommendations (GetRecommendationsRequest) returns (stream RecommendationsProductMessage);
+  rpc GetRecommendations (GetRecommendationsRequest) returns (stream RecommendationMessage);
   rpc GetRecommendationsByBasketId (BasketIdMessage) returns (stream RecommendationsProductMessage);
 }
 
 
 message GetRecommendationsRequest {
   repeated int64 productIds = 1;
+}
+
+message RecommendationMessage {
+  RecommendationsProductMessage product = 1;
+  int32 priority = 2;
 }
 
 message RecommendationsProducts {

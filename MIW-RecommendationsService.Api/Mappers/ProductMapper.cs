@@ -20,6 +20,15 @@ namespace MIW_RecommendationsServiceService.Api.Mappers
             };
         }
 
+        public static RecommendationMessage RecommendationToRecommendationMessage(Recommendation recommendation)
+        {
+            return new()
+            {
+                Product = ProductToProductResponse(recommendation.Product),
+                Priority = recommendation.Priority
+            };
+        }
+
         // public static List<Product> GetRecommendationsRequestToProductList(GetRecommendationsRequest request)
         // {
         //     var products = new List<Product>();

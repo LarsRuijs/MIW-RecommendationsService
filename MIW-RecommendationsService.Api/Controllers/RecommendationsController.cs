@@ -23,7 +23,7 @@ namespace MIW_RecommendationsService.Api.Controllers
         }
 
         public override async Task GetRecommendations(GetRecommendationsRequest request,
-            IServerStreamWriter<RecommendationsProductMessage> responseStream,
+            IServerStreamWriter<RecommendationMessage> responseStream,
             ServerCallContext context)
         {
             _logger.LogInformation("Get Recommendations invoked");
@@ -33,7 +33,7 @@ namespace MIW_RecommendationsService.Api.Controllers
                     .GetRecommendations(ProductMapper.GetRecommendationsRequestToProductIdList(request));
                 foreach (var response in responses.Result)
                 {
-                    await responseStream.WriteAsync(ProductMapper.ProductToProductResponse(response));
+                    await responseStream.WriteAsync(ProductMapper.RecommendationToRecommendationMessage(response));
                 }
             }
             catch (Exception e)

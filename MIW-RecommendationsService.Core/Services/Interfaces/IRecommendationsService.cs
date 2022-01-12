@@ -8,7 +8,7 @@ namespace MIW_RecommendationsService.Core.Services.Interfaces
     {
         Task<List<Product>> GetAll();
 
-        Task<List<Product>> GetRecommendations(List<long> productIds);
+        Task<List<Recommendation>> GetRecommendations(List<long> productIds);
         
         Task<List<Product>> GetRecommendations(long basketId);
     }

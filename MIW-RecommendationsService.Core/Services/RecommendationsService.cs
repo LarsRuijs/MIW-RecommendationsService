@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MIW_RecommendationsService.Core.Services.Interfaces;
 using MIW_RecommendationsService.Dal.Models;
@@ -15,14 +16,39 @@ namespace MIW_RecommendationsService.Core.Services
             _productDao = productDao;
         }
         
-        public Task<List<Product>> GetAll()
+        public async Task<List<Product>> GetAll()
         {
-            return _productDao.GetAll();
+            return await _productDao.GetAll();
         }
 
-        public Task<List<Product>> GetRecommendations(List<long> productIds)
+        public async Task<List<Recommendation>> GetRecommendations(List<long> productIds)
         {
-            return _productDao.GetRecommendations(productIds);
+            List<Product> products = await _productDao.GetRecommendations(productIds);
+            
+            var recommendations = new List<Recommendation>();
+            var queue = new List<Product>();
+            foreach (var product in products)
+            {
+                if (queue.Contains(product))
+                {
+                    continue;
+                }
+                
+                queue.Add(product);
+                
+                recommendations.Add(new Recommendation()
+                    {
+                        Product = product,
+                        // How often was the same product recommended?
+                        Priority = products.Count(x => x.Id == product.Id)
+                    });
+                
+            }
+
+            return recommendations
+                .OrderByDescending(x => x.Priority)
+                .Take(5)
+                .ToList();
         }
 
         public Task<List<Product>> GetRecommendations(long basketId)

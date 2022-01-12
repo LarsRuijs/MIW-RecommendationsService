@@ -22,14 +22,15 @@ namespace MIW_RecommendationsService.Api.Controllers
             _recommendationsService = recommendationsService;
         }
 
-        public override async Task GetAllProducts(GetAllProductsRequest request,
-            IServerStreamWriter<ProductResponse> responseStream,
+        public override async Task GetRecommendations(GetRecommendationsRequest request,
+            IServerStreamWriter<RecommendationsProductMessage> responseStream,
             ServerCallContext context)
         {
-            _logger.LogInformation("Get All Products invoked");
+            _logger.LogInformation("Get Recommendations invoked");
             try
             {
-                var responses = _recommendationsService.GetAll();
+                var responses = _recommendationsService
+                    .GetRecommendations(ProductMapper.GetRecommendationsRequestToProductIdList(request));
                 foreach (var response in responses.Result)
                 {
                     await responseStream.WriteAsync(ProductMapper.ProductToProductResponse(response));
@@ -41,5 +42,26 @@ namespace MIW_RecommendationsService.Api.Controllers
                 throw new RpcException(new Status(StatusCode.Internal, e.Message));
             }
         }
+        
+        // public override async Task GetRecommendationsByBasketId(BasketIdMessage basketIdMessage,
+        //     IServerStreamWriter<RecommendationsProductMessage> responseStream,
+        //     ServerCallContext context)
+        // {
+        //     _logger.LogInformation("Get Recommendations invoked");
+        //     try
+        //     {
+        //         var responses = _recommendationsService
+        //             .GetRecommendations(ProductMapper.GetRecommendationsRequestToProductList(request));
+        //         foreach (var response in responses.Result)
+        //         {
+        //             await responseStream.WriteAsync(ProductMapper.ProductToProductResponse(response));
+        //         }
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         _logger.LogError("{E}", e);
+        //         throw new RpcException(new Status(StatusCode.Internal, e.Message));
+        //     }
+        // }
     }
 }

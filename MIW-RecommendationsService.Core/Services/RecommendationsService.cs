@@ -19,5 +19,15 @@ namespace MIW_RecommendationsService.Core.Services
         {
             return _productDao.GetAll();
         }
+
+        public Task<List<Product>> GetRecommendations(List<long> productIds)
+        {
+            return _productDao.GetRecommendations(productIds);
+        }
+
+        public Task<List<Product>> GetRecommendations(long basketId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

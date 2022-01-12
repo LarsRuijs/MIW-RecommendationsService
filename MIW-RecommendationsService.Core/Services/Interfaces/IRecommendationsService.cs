@@ -7,5 +7,9 @@ namespace MIW_RecommendationsService.Core.Services.Interfaces
     public interface IRecommendationsService
     {
         Task<List<Product>> GetAll();
+
+        Task<List<Product>> GetRecommendations(List<long> productIds);
+        
+        Task<List<Product>> GetRecommendations(long basketId);
     }
 }

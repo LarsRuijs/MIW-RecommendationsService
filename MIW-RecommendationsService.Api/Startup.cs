@@ -11,6 +11,7 @@ using MIW_RecommendationsService.Api.Controllers;
 using MIW_RecommendationsService.Core.Services.Interfaces;
 using MIW_RecommendationsService.Dal.Neo4j;
 using MIW_RecommendationsService.Dal.Neo4j.Interfaces;
+using MIW_RecommendationsService.Messaging;
 
 namespace MIW_RecommendationsService.Api
 {
@@ -23,6 +24,10 @@ namespace MIW_RecommendationsService.Api
             services.AddTransient<IRecommendationsService, Core.Services.RecommendationsService>();
 
             services.AddTransient<IProductDao, ProductDao>();
+            
+            services.AddSingleton<IRabbitMqService, RabbitMqService>();
+            services.AddSingleton<IConsumerService, ConsumerService>();
+            services.AddHostedService<ConsumerHostedService>();
             
             services.AddGrpc();
         }

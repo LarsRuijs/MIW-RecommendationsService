@@ -26,15 +26,16 @@ namespace MIW_RecommendationsService.Core.Services
             List<Product> products = await _productDao.GetRecommendations(productIds);
             
             var recommendations = new List<Recommendation>();
-            var queue = new List<Product>();
+            var skipQueue = new List<long>();
             foreach (var product in products)
             {
-                if (queue.Contains(product))
+                // Continue if duplicate product is found or if product is already being ordered by the customer.
+                if (skipQueue.Contains(product.Id) || productIds.Contains(product.Id))
                 {
                     continue;
                 }
                 
-                queue.Add(product);
+                skipQueue.Add(product.Id);
                 
                 recommendations.Add(new Recommendation()
                     {

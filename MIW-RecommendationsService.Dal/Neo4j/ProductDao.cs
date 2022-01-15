@@ -91,10 +91,10 @@ namespace MIW_RecommendationsService.Dal.Neo4j
                     await session.ReadTransactionAsync(
                         async tx =>
                         {
-                            var result = await tx.RunAsync(query);
-                            var toList = await result.ToListAsync();
+                            IResultCursor result = await tx.RunAsync(query);
+                            List<IRecord> response = await result.ToListAsync();
 
-                            foreach (var record in toList)
+                            foreach (var record in response)
                             {
                                 var node = record.Values["re"] as INode;
                                 recommendations.Add(Neo4jMapper.INodeToProduct(node));
